@@ -1,20 +1,25 @@
-<mat-form-field class="task-form-field">
-    <mat-label>New Task</mat-label>
-    <input matInput type="text">
+<div class="container m-4">
+    
+  <mat-form-field class="task-form-field" style="display: block; width: 50%;">
+      <mat-label>New Task</mat-label>
+      <input matInput type="text" #task_title>
+  </mat-form-field>
+  <mat-form-field class="task-form-field" style="display: block; width: 50%;">
+    <mat-label>Comment</mat-label>
+    <input matInput type="text" #task_comment>
 </mat-form-field>
-
-<button mat-button color="primary" class="add_btn">Add</button>
-
-<h3 style="color: orange;">Tasks:</h3>
-<mat-card>
-    <mat-card-header>
-      <mat-card-title>UI</mat-card-title>
-      <mat-card-subtitle>elkesziteni a UI-t</mat-card-subtitle>
-    </mat-card-header>
-    <mat-card-actions>
-      <button mat-raised-button>Done</button>
-      <button mat-button>Delete</button>
-    </mat-card-actions>
-  </mat-card>
-  <br>
-  <mat-card>
+  
+  <button (click)="addTask(task_title.value, task_comment.value)" color="primary" class="add_btn" style="display: block; padding: 10px">Add Task</button>
+  
+  <h3 style="color: orange;">Tasks:</h3>
+  <mat-card *ngFor="let task of taskArray" style="margin-block: 30px">
+      <mat-card-header>
+        <mat-card-title>{{task.title}}</mat-card-title>
+        <mat-card-subtitle>{{task.comment}}</mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-actions>
+        <button mat-raised-button>Done</button>
+        <button mat-button>Delete</button>
+      </mat-card-actions>
+    </mat-card>
+</div>

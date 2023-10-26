@@ -15,3 +15,8 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 .add_btn{
     margin-bottom: 15px;
 }
+
+mat-card{
+    width: 50%;
+}
+
