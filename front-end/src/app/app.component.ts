@@ -26,14 +26,14 @@ export class AppComponent {
     } else alert("Task can't be empty!");
   }
 
-  taskDone(i: number) {
-    this.doneArray.push(this.taskArray[i]);
-    this.taskArray.splice(i, 1);
+  taskDone(index: number) {
+    this.doneArray.push(this.taskArray[index]);
+    this.taskDelete(index);
     this.renderClearbtn = true;
   }
 
-  taskDelete(i: number) {
-    this.taskArray.splice(i, 1);
+  taskDelete(index: number) {
+    this.taskArray.splice(index, 1);
   }
 
   doneClear() {
