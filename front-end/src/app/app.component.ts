@@ -4,9 +4,9 @@ class Task {
   title = '';
   comment = '';
 
-  constructor(titl: string, comm: string) {
-    this.title = titl;
-    this.comment = comm;
+  constructor(title: string, comment: string) {
+    this.title = title;
+    this.comment = comment;
   }
 }
 @Component({
