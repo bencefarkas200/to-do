@@ -7,7 +7,7 @@ mat-form-field {
   margin-inline: auto;
 }
 
-.valami {
+.task_done_container {
   padding: 10px;
   border-radius: 10px;
   border: 1px solid grey;
@@ -16,7 +16,7 @@ mat-form-field {
   margin-bottom: 30px;
 }
 
-.valami > h3 {
+.task_done_container > h3 {
   font-weight: 500;
 }
 
