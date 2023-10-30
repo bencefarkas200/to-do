@@ -11,6 +11,8 @@
   <button
     mat-raised-button
     (click)="addTask(task_title.value, task_comment.value)"
+    (click)="task_title.value = ''"
+    (click)="task_comment.value = ''"
     color="primary"
     class="add_btn"
     style="display: block; padding: 10px"
@@ -46,7 +48,7 @@
       <h3 style="color: #3f51b5; text-decoration: underline">Done:</h3>
       <mat-card
         *ngFor="let done of doneArray"
-        style="margin-block: 30px; opacity: 30%"
+        style="margin-block: 30px; opacity: 60%"
       >
         <mat-card-header>
           <mat-card-title>{{ done.title }}</mat-card-title>
@@ -58,6 +60,7 @@
         </mat-card-content>
       </mat-card>
       <button
+        *ngIf="renderClearbtn"
         mat-raised-button
         color="primary"
         (click)="doneClear()"

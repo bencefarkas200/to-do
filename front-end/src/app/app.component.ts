@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 class Task {
   title = '';
@@ -17,6 +17,7 @@ class Task {
 export class AppComponent {
   taskArray: Task[] = [];
   doneArray: Task[] = [];
+  renderClearbtn = false;
 
   addTask(title: string, comment: string) {
     if (title != '') {
@@ -28,6 +29,7 @@ export class AppComponent {
   taskDone(i: number) {
     this.doneArray.push(this.taskArray[i]);
     this.taskArray.splice(i, 1);
+    this.renderClearbtn = true;
   }
 
   taskDelete(i: number) {
@@ -36,5 +38,6 @@ export class AppComponent {
 
   doneClear() {
     this.doneArray = [];
+    this.renderClearbtn = false;
   }
 }
