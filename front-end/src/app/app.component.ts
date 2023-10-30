@@ -1,14 +1,6 @@
 import { Component, Input } from '@angular/core';
+import { Task } from 'src/model/Task';
 
-class Task {
-  title = '';
-  comment = '';
-
-  constructor(title: string, comment: string) {
-    this.title = title;
-    this.comment = comment;
-  }
-}
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
