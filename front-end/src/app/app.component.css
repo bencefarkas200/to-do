@@ -7,7 +7,7 @@ mat-form-field {
   margin-inline: auto;
 }
 
-.task_done_container {
+.task-done-container {
   padding: 10px;
   border-radius: 10px;
   border: 1px solid grey;
@@ -16,7 +16,7 @@ mat-form-field {
   margin-bottom: 30px;
 }
 
-.task_done_container > h3 {
+.task-done-container > h3 {
   font-weight: 500;
 }
 
