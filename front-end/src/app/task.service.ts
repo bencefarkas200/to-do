@@ -13,11 +13,6 @@ export class TaskService {
     return (await data.json()) ?? [];
   }
 
-  addTask(title: string, comment: string) {
-    var parse_obj = JSON.parse(this.url);
-    parse_obj['tasks'].push({ title: 'Task1', comment: 'task1comment' });
-  }
-
   submitTask(title: string, comment: string) {
     /*var parse_obj = JSON.parse(this.url);
     parse_obj['tasks'].push({ title: 'teszt', comment: 'tesztcomm' });

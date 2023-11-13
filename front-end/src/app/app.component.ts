@@ -84,7 +84,7 @@ export class AppComponent {
     });
   }
 
-  addTask(title: string, comment: string) {
+  /* addTask(title: string, comment: string) {
     if (title != '') {
       this.taskService.addTask(title, comment);
     } else alert("Task can't be empty!");
@@ -98,7 +98,7 @@ export class AppComponent {
 
   taskDelete(index: number) {
     this.taskArray.splice(index, 1);
-  }
+  }*/
 
   doneClear() {
     this.doneArray = [];
