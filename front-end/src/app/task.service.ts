@@ -7,18 +7,20 @@ import { Task } from 'src/model/Task';
 })
 export class TaskService {
   readonly url = 'http://localhost:3000/tasks';
+  db: Task[] = [];
 
   async getTasks(): Promise<Task[]> {
-    const data = await fetch(this.url);
-    return (await data.json()) ?? [];
+    /*const data = await fetch(this.url);
+    return (await data.json()) ?? []; TODO: HA LESZ BACKEND AKKOR EZT HASZNÁLJUK!*/
+    return new Promise((resolve, reject) => {
+      resolve(this.db);
+    });
   }
 
-  submitTask(title: string, comment: string) {
-    /*var parse_obj = JSON.parse(this.url);
-    parse_obj['tasks'].push({ title: 'teszt', comment: 'tesztcomm' });
-    parse_obj = JSON.stringify(parse_obj);*/
-
-    console.log(title + ', ' + comment);
+  submitTask(id: number, title: string, comment: string) {
+    if (title != '') {
+      this.db.push({ id: id, title: title, comment: comment });
+    } else alert("Title can't be empty!");
   }
   constructor() {}
 }

@@ -37,16 +37,25 @@ import { TaskService } from './task.service';
         </button>
       </form>
       <div class="row">
-        <div class="col-md-5 task-done-container">
+        <div class="col-md-5 task-done-container" *ngIf="gotTaskArray">
           <h3 style="color: #3f51b5; text-decoration: underline">Tasks:</h3>
-          <app-task-card *ngFor="let task of taskArray"></app-task-card>
+          <app-task-card
+            *ngFor="let task of taskArray"
+            [task]="task"
+            [isDone]="true"
+            (doneEvent)="doneTask($event)"
+            (deleteEvent)="deleteTask($event)"
+          ></app-task-card>
         </div>
         <div class="col-md-2"></div>
-        <div class="col-md-5 task-done-container">
+        <div class="col-md-5 task-done-container" *ngIf="!doneArrayEmpty">
           <h3 style="color: #3f51b5; text-decoration: underline">Done:</h3>
-          <app-task-card></app-task-card>
+          <app-task-card
+            *ngFor="let task of doneArray"
+            [task]="task"
+            [isDone]="false"
+          ></app-task-card>
           <button
-            *ngIf="renderClearbtn"
             mat-raised-button
             color="primary"
             (click)="doneClear()"
@@ -64,7 +73,9 @@ export class AppComponent {
   taskService = inject(TaskService);
   taskArray: Task[] = [];
   doneArray: Task[] = [];
-  renderClearbtn = false;
+  doneArrayEmpty = true;
+  gotTaskArray = false;
+  id = -1;
 
   applyForm = new FormGroup({
     title: new FormControl(''),
@@ -72,15 +83,39 @@ export class AppComponent {
   });
 
   submitTask() {
+    this.id++;
     this.taskService.submitTask(
+      this.id,
       this.applyForm.value.title ?? '',
       this.applyForm.value.comment ?? ''
     );
+
+    this.applyForm.reset();
+  }
+
+  doneTask(id: number) {
+    this.doneArrayEmpty = false;
+
+    this.taskArray.forEach((e) => {
+      if (e.id === id) {
+        this.doneArray.push(e);
+        this.taskArray.splice(this.taskArray.indexOf(e), 1);
+      }
+    });
+  }
+
+  deleteTask(id: number) {
+    this.taskArray.forEach((e) => {
+      if (e.id === id) {
+        this.taskArray.splice(this.taskArray.indexOf(e), 1);
+      }
+    });
   }
 
   constructor() {
     this.taskService.getTasks().then((taskArrayList: Task[]) => {
       this.taskArray = taskArrayList;
+      this.gotTaskArray = true;
     });
   }
 
@@ -102,6 +137,6 @@ export class AppComponent {
 
   doneClear() {
     this.doneArray = [];
-    this.renderClearbtn = false;
+    this.doneArrayEmpty = true;
   }
 }
