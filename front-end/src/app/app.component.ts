@@ -1,8 +1,6 @@
-import { Component, Input, inject } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { Task } from 'src/model/Task';
-import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
-import { CommonModule } from '@angular/common';
-import { TaskCardComponent } from './task-card/task-card.component';
+import { FormControl, FormGroup } from '@angular/forms';
 import { TaskService } from './task.service';
 
 @Component({
