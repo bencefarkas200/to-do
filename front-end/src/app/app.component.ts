@@ -68,7 +68,6 @@ import { TaskService } from './task.service';
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent {
-  taskService = inject(TaskService);
   taskArray: Task[] = [];
   doneArray: Task[] = [];
   doneArrayEmpty = true;
@@ -110,7 +109,7 @@ export class AppComponent {
     });
   }
 
-  constructor() {
+  constructor(private readonly taskService: TaskService) {
     this.taskService.getTasks().then((taskArrayList: Task[]) => {
       this.taskArray = taskArrayList;
       this.gotTaskArray = true;
