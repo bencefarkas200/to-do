@@ -1,7 +1,4 @@
-import { Component, Input, Output, inject, EventEmitter } from '@angular/core';
-import { MatCardModule } from '@angular/material/card';
-import { MatButtonModule } from '@angular/material/button';
-import { TaskService } from '../task.service';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { Task } from 'src/model/Task';
 
 @Component({
