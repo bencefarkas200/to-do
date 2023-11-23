@@ -7,16 +7,7 @@ mat-form-field {
   margin-inline: auto;
 }
 
-.task-container {
-  padding: 10px;
-  border-radius: 10px;
-  border: 1px solid grey;
-  box-shadow: -1px 3px 3px rgba(52, 26, 94, 0.782);
-  height: fit-content;
-  margin-bottom: 30px;
-  margin-left: 13px;
-}
-
+.task-container,
 .done-container {
   padding: 10px;
   border-radius: 10px;
@@ -24,6 +15,10 @@ mat-form-field {
   box-shadow: -1px 3px 3px rgba(52, 26, 94, 0.782);
   height: fit-content;
   margin-bottom: 30px;
+}
+
+.task-container {
+  margin-left: 13px;
 }
 
 .done-container app-task-card {
