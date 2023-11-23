@@ -34,7 +34,6 @@ export class TaskCardComponent {
 
   doneTask(taskId: number) {
     this.doneEvent.emit(taskId);
-    this.isDone = true;
   }
 
   deleteTask(taskId: number) {

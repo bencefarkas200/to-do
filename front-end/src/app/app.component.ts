@@ -37,7 +37,7 @@ import { TaskService } from './task.service';
         </button>
       </form>
       <div class="row">
-        <div class="col-md-5 task-done-container" *ngIf="gotTaskArray">
+        <div class="col-sm-5 task-container" *ngIf="gotTaskArray">
           <h3 style="color: #3f51b5; text-decoration: underline">Tasks:</h3>
           <app-task-card
             *ngFor="let task of taskArray"
@@ -47,8 +47,8 @@ import { TaskService } from './task.service';
             (deleteEvent)="deleteTask($event)"
           ></app-task-card>
         </div>
-        <div class="col-md-2"></div>
-        <div class="col-md-5 task-done-container" *ngIf="!doneArrayEmpty">
+        <div class="col-1"></div>
+        <div class="col-sm-5 done-container" *ngIf="!doneArrayEmpty">
           <h3 style="color: #3f51b5; text-decoration: underline">Done:</h3>
           <app-task-card
             *ngFor="let task of doneArray"
@@ -118,22 +118,6 @@ export class AppComponent {
       this.gotTaskArray = true;
     });
   }
-
-  /* addTask(title: string, comment: string) {
-    if (title != '') {
-      this.taskService.addTask(title, comment);
-    } else alert("Task can't be empty!");
-  }
-
-  taskDone(index: number) {
-    this.doneArray.push(this.taskArray[index]);
-    this.taskDelete(index);
-    this.renderClearbtn = true;
-  }
-
-  taskDelete(index: number) {
-    this.taskArray.splice(index, 1);
-  }*/
 
   doneClear() {
     this.doneArray = [];
