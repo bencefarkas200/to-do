@@ -16,9 +16,13 @@ export class TaskService {
     });
   }
 
-  submitTask(id: number, title: string, comment: string) {
-    if (title != '') {
-      this.db.push({ id: id, title: title, comment: comment });
+  submitTask(newTask: Task) {
+    if (newTask.title != '') {
+      this.db.push({
+        id: newTask.id,
+        title: newTask.title,
+        comment: newTask.comment,
+      });
     } else alert("Title can't be empty!");
   }
   constructor() {}

@@ -80,12 +80,12 @@ export class AppComponent {
   });
 
   submitTask() {
-    this.id++;
-    this.taskService.submitTask(
-      this.id,
+    let newTask = new Task(
+      this.id++,
       this.applyForm.value.title ?? '',
       this.applyForm.value.comment ?? ''
     );
+    this.taskService.submitTask(newTask);
 
     this.applyForm.reset();
   }
