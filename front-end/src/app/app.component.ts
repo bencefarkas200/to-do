@@ -50,7 +50,7 @@ import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
         </button>
       </form>
       <div class="row">
-        <div class="col-sm-5 task-container" *ngIf="gotTaskArray">
+        <div class="col-sm-5 task-container" *ngIf="shouldShowTaskArray">
           <h3 style="color: #3f51b5; text-decoration: underline">Tasks:</h3>
           <app-task-card
             *ngFor="let task of taskArray"
@@ -61,7 +61,7 @@ import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
           ></app-task-card>
         </div>
         <div class="col-1"></div>
-        <div class="col-sm-5 done-container" *ngIf="!doneArrayEmpty">
+        <div class="col-sm-5 done-container" *ngIf="!isDoneArrayEmpty">
           <h3 style="color: #3f51b5; text-decoration: underline">Done:</h3>
           <button
             mat-raised-button
@@ -85,8 +85,8 @@ import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 export class AppComponent {
   taskArray: Task[] = [];
   doneArray: Task[] = [];
-  doneArrayEmpty = true;
-  gotTaskArray = false;
+  isDoneArrayEmpty = true;
+  shouldShowTaskArray = false;
   id = -1;
 
   applyForm = new FormGroup({
@@ -114,7 +114,7 @@ export class AppComponent {
   }
 
   doneTask(id: number) {
-    this.doneArrayEmpty = false;
+    this.isDoneArrayEmpty = false;
 
     this.taskArray.forEach((e) => {
       if (e.id === id) {
@@ -138,12 +138,12 @@ export class AppComponent {
   ) {
     this.taskService.getTasks().then((taskArrayList: Task[]) => {
       this.taskArray = taskArrayList;
-      this.gotTaskArray = true;
+      this.shouldShowTaskArray = true;
     });
   }
 
   doneClear() {
     this.doneArray = [];
-    this.doneArrayEmpty = true;
+    this.isDoneArrayEmpty = true;
   }
 }
