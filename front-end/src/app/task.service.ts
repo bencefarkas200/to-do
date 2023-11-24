@@ -8,6 +8,8 @@ export class TaskService {
   readonly url = 'http://localhost:3000/tasks';
   db: Task[] = [];
 
+  constructor() {}
+
   async getTasks(): Promise<Task[]> {
     /*const data = await fetch(this.url);
     return (await data.json()) ?? []; TODO: HA LESZ BACKEND AKKOR EZT HASZNÁLJUK!*/
@@ -23,5 +25,4 @@ export class TaskService {
       comment: newTask.comment,
     });
   }
-  constructor() {}
 }

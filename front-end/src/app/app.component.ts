@@ -94,6 +94,16 @@ export class AppComponent {
     comment: new FormControl(''),
   });
 
+  constructor(
+    private readonly taskService: TaskService,
+    private snackBar: MatSnackBar
+  ) {
+    this.taskService.getTasks().then((taskArrayList: Task[]) => {
+      this.taskArray = taskArrayList;
+      this.shouldShowTaskArray = true;
+    });
+  }
+
   submitTask() {
     if (this.applyForm.value.title != '') {
       let newTask = new Task(
@@ -129,16 +139,6 @@ export class AppComponent {
       if (e.id === id) {
         this.taskArray.splice(this.taskArray.indexOf(e), 1);
       }
-    });
-  }
-
-  constructor(
-    private readonly taskService: TaskService,
-    private snackBar: MatSnackBar
-  ) {
-    this.taskService.getTasks().then((taskArrayList: Task[]) => {
-      this.taskArray = taskArrayList;
-      this.shouldShowTaskArray = true;
     });
   }
 
