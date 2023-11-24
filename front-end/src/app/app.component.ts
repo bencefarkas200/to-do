@@ -48,11 +48,6 @@ import { TaskService } from './task.service';
         <div class="col-1"></div>
         <div class="col-sm-5 done-container" *ngIf="!doneArrayEmpty">
           <h3 style="color: #3f51b5; text-decoration: underline">Done:</h3>
-          <app-task-card
-            *ngFor="let task of doneArray"
-            [task]="task"
-            [isDone]="false"
-          ></app-task-card>
           <button
             mat-raised-button
             color="primary"
@@ -61,6 +56,11 @@ import { TaskService } from './task.service';
           >
             Clear
           </button>
+          <app-task-card
+            *ngFor="let task of doneArray"
+            [task]="task"
+            [isDone]="false"
+          ></app-task-card>
         </div>
       </div>
     </div>
