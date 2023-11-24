@@ -1,7 +1,7 @@
 export class Task {
-  id = -1;
-  title = '';
-  comment = '';
+  id: number;
+  title: string;
+  comment: string;
 
   constructor(id: number, title: string, comment: string) {
     this.title = title;
