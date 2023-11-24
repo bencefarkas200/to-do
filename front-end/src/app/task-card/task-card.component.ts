@@ -1,8 +1,13 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { Task } from 'src/model/Task';
+import { MatCardModule } from '@angular/material/card';
+import { CommonModule } from '@angular/common';
+import { MatButtonModule } from '@angular/material/button';
 
 @Component({
   selector: 'app-task-card',
+  standalone: true,
+  imports: [MatCardModule, CommonModule, MatButtonModule],
   template: `<mat-card style="margin-block: 30px;">
     <mat-card-header>
       <mat-card-title>{{ task.title }}</mat-card-title>

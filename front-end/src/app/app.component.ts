@@ -1,10 +1,25 @@
-import { Component, inject } from '@angular/core';
+import { Component } from '@angular/core';
 import { Task } from 'src/model/Task';
 import { FormControl, FormGroup } from '@angular/forms';
 import { TaskService } from './task.service';
+import { MatCardModule } from '@angular/material/card';
+import { MatButtonModule } from '@angular/material/button';
+import { MatInputModule } from '@angular/material/input';
+import { ReactiveFormsModule } from '@angular/forms';
+import { TaskCardComponent } from './task-card/task-card.component';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-root',
+  standalone: true,
+  imports: [
+    MatCardModule,
+    MatButtonModule,
+    MatInputModule,
+    ReactiveFormsModule,
+    TaskCardComponent,
+    CommonModule,
+  ],
   template: `
     <div class="container dashboard">
       <form [formGroup]="applyForm" (submit)="submitTask()">
