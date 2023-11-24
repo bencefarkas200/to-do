@@ -1,6 +1,0 @@
-1. "app.component.html"-ben az inputokat formGroup-ba tenni
-
-2. "app.component.ts"-ből a Task tömböket és a function-ket egy service-be átteni. (persze ezután a service-t injektálni).
-
-3. Magát a task kártyákat külön component-ként kezelni.
-

@@ -8,6 +8,7 @@ import { MatInputModule } from '@angular/material/input';
 import { ReactiveFormsModule } from '@angular/forms';
 import { TaskCardComponent } from './task-card/task-card.component';
 import { CommonModule } from '@angular/common';
+import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-root',
@@ -19,6 +20,7 @@ import { CommonModule } from '@angular/common';
     ReactiveFormsModule,
     TaskCardComponent,
     CommonModule,
+    MatSnackBarModule,
   ],
   template: `
     <div class="container dashboard">
@@ -39,8 +41,6 @@ import { CommonModule } from '@angular/common';
 
         <button
           mat-raised-button
-          (click)="task_title.value = ''"
-          (click)="task_comment.value = ''"
           color="primary"
           class="add_btn"
           style="display: block; padding: 10px"
@@ -95,14 +95,22 @@ export class AppComponent {
   });
 
   submitTask() {
-    let newTask = new Task(
-      this.id++,
-      this.applyForm.value.title ?? '',
-      this.applyForm.value.comment ?? ''
-    );
-    this.taskService.submitTask(newTask);
-
-    this.applyForm.reset();
+    if (this.applyForm.value.title != '') {
+      let newTask = new Task(
+        this.id++,
+        this.applyForm.value.title ?? '',
+        this.applyForm.value.comment ?? ''
+      );
+      this.taskService.submitTask(newTask);
+      this.applyForm.reset();
+      this.applyForm.value.title = '';
+      this.applyForm.value.comment = '';
+    } else {
+      this.snackBar.open("Task title can't be empty!", '', {
+        duration: 2500,
+        verticalPosition: 'bottom',
+      });
+    }
   }
 
   doneTask(id: number) {
@@ -124,7 +132,10 @@ export class AppComponent {
     });
   }
 
-  constructor(private readonly taskService: TaskService) {
+  constructor(
+    private readonly taskService: TaskService,
+    private snackBar: MatSnackBar
+  ) {
     this.taskService.getTasks().then((taskArrayList: Task[]) => {
       this.taskArray = taskArrayList;
       this.gotTaskArray = true;

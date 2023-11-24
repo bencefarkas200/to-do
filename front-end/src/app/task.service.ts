@@ -17,13 +17,11 @@ export class TaskService {
   }
 
   submitTask(newTask: Task) {
-    if (newTask.title != '') {
-      this.db.push({
-        id: newTask.id,
-        title: newTask.title,
-        comment: newTask.comment,
-      });
-    } else alert("Title can't be empty!");
+    this.db.push({
+      id: newTask.id,
+      title: newTask.title,
+      comment: newTask.comment,
+    });
   }
   constructor() {}
 }
