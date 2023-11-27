@@ -1,9 +1,11 @@
 export class Task {
-  title = '';
-  comment = '';
+  id: number;
+  title: string;
+  comment: string;
 
-  constructor(title: string, comment: string) {
+  constructor(id: number, title: string, comment: string) {
     this.title = title;
     this.comment = comment;
+    this.id = id;
   }
 }
