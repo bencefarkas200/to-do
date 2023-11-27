@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Task } from 'src/model/Task';
-import { FormControl, FormGroup, FormsModule } from '@angular/forms';
+import { FormControl, FormGroup } from '@angular/forms';
 import { TaskService } from './task.service';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
@@ -9,8 +9,6 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { TaskCardComponent } from './task-card/task-card.component';
 import { CommonModule } from '@angular/common';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { config } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -22,8 +20,6 @@ import { config } from 'rxjs';
     ReactiveFormsModule,
     TaskCardComponent,
     CommonModule,
-    MatFormFieldModule,
-    FormsModule,
   ],
   template: `
     <div class="container dashboard">
