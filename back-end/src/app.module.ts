@@ -4,6 +4,7 @@ import { AppService } from './app.service';
 import { MongooseModule } from '@nestjs/mongoose';
 import { Task, TaskSchema } from './schemas/task.schema';
 import { TaskModule } from './task/task.module';
+import { TaskService } from './task/task.service';
 
 @Module({
   imports: [
@@ -12,6 +13,6 @@ import { TaskModule } from './task/task.module';
     TaskModule,
   ],
   controllers: [AppController],
-  providers: [AppService],
+  providers: [AppService, TaskService],
 })
 export class AppModule {}
