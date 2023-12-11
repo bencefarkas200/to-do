@@ -17,9 +17,9 @@ export class TaskController {
   constructor(private readonly taskService: TaskService) {}
 
   @Get()
-  async getAll(@Res() response) {
+  async getAll() {
     const tasks = await this.taskService.getAll();
-    return response.status(HttpStatus.OK).json({ tasks });
+    return tasks;
   }
 
   @Post()
