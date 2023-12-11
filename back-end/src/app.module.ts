@@ -8,7 +8,9 @@ import { TaskService } from './task/task.service';
 
 @Module({
   imports: [
-    MongooseModule.forRoot('mongodb://localhost:3000'),
+    MongooseModule.forRoot('mongodb://127.0.0.1:27017', {
+      dbName: 'todo',
+    }),
     MongooseModule.forFeature([{ name: Task.name, schema: TaskSchema }]),
     TaskModule,
   ],

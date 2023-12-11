@@ -9,11 +9,10 @@ import {
   Put,
   Res,
 } from '@nestjs/common';
-import { response } from 'express';
 import { Task } from 'src/schemas/task.schema';
 import { TaskService } from 'src/task/task.service';
 
-@Controller('task')
+@Controller('tasks')
 export class TaskController {
   constructor(private readonly taskService: TaskService) {}
 
@@ -21,5 +20,11 @@ export class TaskController {
   async getAll(@Res() response) {
     const tasks = await this.taskService.getAll();
     return response.status(HttpStatus.OK).json({ tasks });
+  }
+
+  @Post()
+  async createTask(@Body() task: Task) {
+    const newTask = await this.taskService.createTask(task);
+    return newTask;
   }
 }
