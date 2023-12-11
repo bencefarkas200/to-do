@@ -9,7 +9,7 @@ import {
   Put,
   Res,
 } from '@nestjs/common';
-import { Task } from 'src/schemas/task.schema';
+import { TaskDTO } from 'src/model/TaskDTO';
 import { TaskService } from 'src/task/task.service';
 
 @Controller('tasks')
@@ -23,7 +23,7 @@ export class TaskController {
   }
 
   @Post()
-  async createTask(@Body() task: Task) {
+  async createTask(@Body() task: TaskDTO) {
     const newTask = await this.taskService.createTask(task);
     return newTask;
   }

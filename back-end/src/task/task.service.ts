@@ -1,6 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
+import { TaskDTO } from 'src/model/TaskDTO';
 import { Task, TaskDocument } from 'src/schemas/task.schema';
 
 @Injectable()
@@ -11,7 +12,7 @@ export class TaskService {
     return await this.taskModel.find().exec();
   }
 
-  async createTask(task: Task): Promise<Task> {
+  async createTask(task: TaskDTO): Promise<Task> {
     const newTask = new this.taskModel(task);
     return newTask.save();
   }
