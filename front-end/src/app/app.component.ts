@@ -86,7 +86,7 @@ export class AppComponent {
   doneArray: Task[] = [];
   isDoneArrayEmpty = true;
   shouldShowTaskArray = false;
-  id = -1;
+  id = 0;
 
   applyForm = new FormGroup({
     title: new FormControl(''),
@@ -98,18 +98,21 @@ export class AppComponent {
     private snackBar: MatSnackBar
   ) {
     this.taskService.getTasks().then((taskArrayList: Task[]) => {
-      this.taskArray = taskArrayList;
+      /*taskArrayList.forEach((task)=>{
+        if(task.isDone) this.
+      })*/
       this.shouldShowTaskArray = true;
     });
   }
 
   submitTask() {
     if (this.applyForm.value.title != '') {
-      let newTask = new Task(
-        this.id++,
-        this.applyForm.value.title ?? '',
-        this.applyForm.value.comment ?? ''
-      );
+      let newTask: Task = {
+        title: this.applyForm.value.title ?? '',
+        comment: this.applyForm.value.comment ?? '',
+        isDone: false,
+      };
+
       this.taskService
         .submitTask(newTask)
         .subscribe((task) => this.taskArray.push(task));
@@ -124,21 +127,25 @@ export class AppComponent {
     }
   }
 
-  doneTask(id: number) {
+  doneTask(id: string) {
     this.isDoneArrayEmpty = false;
 
     this.taskArray.forEach((e) => {
-      if (e.id === id) {
+      if (e._id === id) {
+        e.isDone = true;
         this.doneArray.push(e);
         this.taskArray.splice(this.taskArray.indexOf(e), 1);
       }
     });
   }
 
-  deleteTask(id: number) {
+  deleteTask(id: string) {
+    console.log(this.taskArray);
+    console.log(id);
     this.taskArray.forEach((e) => {
-      if (e.id === id) {
+      if (e._id === id) {
         this.taskArray.splice(this.taskArray.indexOf(e), 1);
+        this.taskService.deleteTask(e._id).subscribe();
       }
     });
   }

@@ -22,4 +22,10 @@ export class TaskService {
   submitTask(newTask: Task): Observable<Task> {
     return this.http.post<Task>(this.url, newTask);
   }
+
+  deleteTask(id: string): Observable<unknown> {
+    const url = `${this.url}/${id}`;
+    console.log(url);
+    return this.http.delete(url);
+  }
 }
