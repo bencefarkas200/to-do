@@ -14,6 +14,9 @@ export class Task {
 
   @Prop()
   comment: string;
+
+  @Prop()
+  isDone: boolean;
 }
 
 export const TaskSchema = SchemaFactory.createForClass(Task);

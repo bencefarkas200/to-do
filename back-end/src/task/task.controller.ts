@@ -33,4 +33,10 @@ export class TaskController {
   async delete(@Param('id') id: string) {
     const deleteTask = await this.taskService.deleteTask(id);
   }
+
+  @Put('/:id')
+  async doneTask(@Param('id') id: string) {
+    const doneTask = await this.taskService.doneTask(id);
+    return doneTask;
+  }
 }

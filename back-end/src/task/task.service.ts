@@ -20,4 +20,8 @@ export class TaskService {
   async deleteTask(id: string): Promise<any> {
     return await this.taskModel.findByIdAndDelete(id);
   }
+
+  async doneTask(id: string): Promise<any> {
+    return await this.taskModel.findByIdAndUpdate(id, { isDone: 'true' });
+  }
 }
