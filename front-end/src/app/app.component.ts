@@ -110,7 +110,10 @@ export class AppComponent {
         this.applyForm.value.title ?? '',
         this.applyForm.value.comment ?? ''
       );
-      this.taskService.submitTask(newTask);
+      this.taskService
+        .submitTask(newTask)
+        .subscribe((task) => this.taskArray.push(task));
+
       this.applyForm.reset();
       this.applyForm.value.title = '';
       this.applyForm.value.comment = '';
