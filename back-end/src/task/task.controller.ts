@@ -3,11 +3,9 @@ import {
   Controller,
   Delete,
   Get,
-  HttpStatus,
   Param,
   Post,
   Put,
-  Res,
 } from '@nestjs/common';
 import { TaskDTO } from 'src/model/TaskDTO';
 import { TaskService } from 'src/task/task.service';
@@ -31,12 +29,11 @@ export class TaskController {
 
   @Delete('/:id')
   async delete(@Param('id') id: string) {
-    const deleteTask = await this.taskService.deleteTask(id);
+    return await this.taskService.deleteTask(id);
   }
 
   @Put('/:id')
   async doneTask(@Param('id') id: string) {
-    const doneTask = await this.taskService.doneTask(id);
-    return doneTask;
+    return await this.taskService.doneTask(id);
   }
 }

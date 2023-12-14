@@ -1,9 +1,5 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
-import {
-  Document,
-  ObjectExpressionOperatorReturningObject,
-  ObjectId,
-} from 'mongoose';
+import { Document } from 'mongoose';
 
 export type TaskDocument = Task & Document;
 
