@@ -22,6 +22,6 @@ export class TaskService {
   }
 
   async doneTask(id: string): Promise<any> {
-    return await this.taskModel.findByIdAndUpdate(id, { isDone: 'true' });
+    return await this.taskModel.findByIdAndUpdate(id, { isDone: true });
   }
 }
