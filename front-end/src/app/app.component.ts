@@ -86,7 +86,6 @@ export class AppComponent {
   doneArray: Task[] = [];
   isDoneArrayEmpty = true;
   shouldShowTaskArray = false;
-  id = 0;
 
   applyForm = new FormGroup({
     title: new FormControl(''),
