@@ -25,7 +25,11 @@ export class TaskService {
 
   deleteTask(id: string): Observable<unknown> {
     const url = `${this.url}/${id}`;
-    console.log(url);
     return this.http.delete(url);
+  }
+
+  doneTask(id: string): Observable<unknown> {
+    const url = `${this.url}/${id}`;
+    return this.http.put(url, '');
   }
 }
