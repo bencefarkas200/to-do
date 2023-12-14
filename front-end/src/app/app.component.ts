@@ -98,7 +98,7 @@ export class AppComponent {
   ) {
     this.taskService.getTasks().then((taskArrayList: Task[]) => {
       taskArrayList.forEach((task) => {
-        if (task.isDone == true) {
+        if (task.isDone) {
           this.doneArray.push(task);
           this.isDoneArrayEmpty = false;
         } else this.taskArray.push(task);
