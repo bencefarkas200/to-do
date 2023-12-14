@@ -1,8 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Task } from 'src/model/Task';
-import { HttpClient, HttpResponse } from '@angular/common/http';
-import { Observable, firstValueFrom, lastValueFrom } from 'rxjs';
-import { TmplAstForLoopBlock } from '@angular/compiler';
+import { HttpClient } from '@angular/common/http';
+import { Observable, lastValueFrom } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',

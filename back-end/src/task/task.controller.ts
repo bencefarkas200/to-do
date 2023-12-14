@@ -23,7 +23,6 @@ export class TaskController {
   @Post()
   async createTask(@Body() task: TaskDTO) {
     const newTask = await this.taskService.createTask(task);
-    console.log(newTask);
     return newTask;
   }
 
