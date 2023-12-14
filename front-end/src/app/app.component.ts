@@ -131,21 +131,21 @@ export class AppComponent {
 
   doneTask(id: string) {
     this.isDoneArrayEmpty = false;
-    this.taskArray.forEach((e) => {
-      if (e._id === id) {
-        e.isDone = true;
-        this.taskService.doneTask(e._id).subscribe();
-        this.doneArray.push(e);
-        this.taskArray.splice(this.taskArray.indexOf(e), 1);
+    this.taskArray.forEach((task) => {
+      if (task._id === id) {
+        task.isDone = true;
+        this.taskService.doneTask(task._id).subscribe();
+        this.doneArray.push(task);
+        this.taskArray.splice(this.taskArray.indexOf(task), 1);
       }
     });
   }
 
   deleteTask(id: string) {
-    this.taskArray.forEach((e) => {
-      if (e._id === id) {
-        this.taskArray.splice(this.taskArray.indexOf(e), 1);
-        this.taskService.deleteTask(e._id).subscribe();
+    this.taskArray.forEach((task) => {
+      if (task._id === id) {
+        this.taskArray.splice(this.taskArray.indexOf(task), 1);
+        this.taskService.deleteTask(task._id).subscribe();
       }
     });
   }
