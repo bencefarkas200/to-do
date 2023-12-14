@@ -17,11 +17,11 @@ export class TaskService {
     return newTask.save();
   }
 
-  async deleteTask(id: string): Promise<any> {
+  async deleteTask(id: string): Promise<Task> {
     return await this.taskModel.findByIdAndDelete(id);
   }
 
-  async doneTask(id: string): Promise<any> {
+  async doneTask(id: string): Promise<Task> {
     return await this.taskModel.findByIdAndUpdate(id, { isDone: true });
   }
 }
