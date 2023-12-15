@@ -87,8 +87,8 @@ export class AppComponent {
   shouldShowTaskArray = false;
 
   applyForm = new FormGroup({
-    title: new FormControl(null),
-    comment: new FormControl(null),
+    title: new FormControl('', { nonNullable: true }),
+    comment: new FormControl('', { nonNullable: true }),
   });
 
   constructor(
