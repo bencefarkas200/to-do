@@ -95,7 +95,7 @@ export class AppComponent {
     private readonly taskService: TaskService,
     private snackBar: MatSnackBar
   ) {
-    this.taskService.getTasks().then((taskArrayList: Task[]) => {
+    this.taskService.getTasks().subscribe((taskArrayList: Task[]) => {
       taskArrayList.forEach((task) => {
         if (task.isDone) {
           this.doneArray.push(task);
@@ -114,7 +114,6 @@ export class AppComponent {
         isDone: false,
       };
       this.applyForm.reset();
-      console.log(this.applyForm.value.title);
 
       this.taskService
         .submitTask(newTask)

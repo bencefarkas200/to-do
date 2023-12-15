@@ -1,7 +1,7 @@
-import { Injectable } from '@angular/core';
-import { Task } from 'src/model/Task';
 import { HttpClient } from '@angular/common/http';
-import { Observable, lastValueFrom } from 'rxjs';
+import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
+import { Task } from 'src/model/Task';
 
 @Injectable({
   providedIn: 'root',
@@ -12,10 +12,10 @@ export class TaskService {
 
   constructor(private http: HttpClient) {}
 
-  async getTasks(): Promise<any> {
+  getTasks(): Observable<any> {
     const data = this.http.get(this.url);
-    const lastData = await lastValueFrom(data);
-    return lastData;
+    //const lastData = lastValueFrom(data);
+    return data;
   }
 
   submitTask(newTask: Task): Observable<Task> {
