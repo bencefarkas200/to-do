@@ -12,8 +12,8 @@ export class TaskService {
 
   constructor(private http: HttpClient) {}
 
-  getTasks(): Observable<any> {
-    const data = this.http.get(this.url);
+  getTasks(): Observable<Task[]> {
+    const data = this.http.get<Task[]>(this.url);
     //const lastData = lastValueFrom(data);
     return data;
   }
