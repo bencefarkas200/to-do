@@ -9,7 +9,7 @@ export class TaskService {
   constructor(@InjectModel(Task.name) private taskModel: Model<TaskDocument>) {}
 
   async getAll(): Promise<Task[]> {
-    return await this.taskModel.find().exec();
+    return this.taskModel.find().exec();
   }
 
   async createTask(task: TaskDTO): Promise<Task> {
@@ -17,11 +17,11 @@ export class TaskService {
     return newTask.save();
   }
 
-  async deleteTask(id: string) {
-    await this.taskModel.findByIdAndDelete(id);
+  async deleteTask(id: string): Promise<Task> {
+    return this.taskModel.findByIdAndDelete(id);
   }
 
   async doneTask(id: string): Promise<Task> {
-    return await this.taskModel.findByIdAndUpdate(id, { isDone: true });
+    return this.taskModel.findByIdAndUpdate(id, { isDone: true });
   }
 }

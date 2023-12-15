@@ -8,13 +8,11 @@ import { Task } from 'src/model/Task';
 })
 export class TaskService {
   readonly url = 'http://127.0.0.1:3000/tasks';
-  db: Task[] = [];
 
   constructor(private http: HttpClient) {}
 
   getTasks(): Observable<Task[]> {
     const data = this.http.get<Task[]>(this.url);
-    //const lastData = lastValueFrom(data);
     return data;
   }
 
@@ -22,13 +20,13 @@ export class TaskService {
     return this.http.post<Task>(this.url, newTask);
   }
 
-  deleteTask(id: string): Observable<unknown> {
+  deleteTask(id: string): Observable<Task> {
     const url = `${this.url}/${id}`;
-    return this.http.delete(url);
+    return this.http.delete<Task>(url);
   }
 
-  doneTask(id: string): Observable<unknown> {
+  doneTask(id: string): Observable<Task> {
     const url = `${this.url}/${id}`;
-    return this.http.put(url, '');
+    return this.http.put<Task>(url, '');
   }
 }

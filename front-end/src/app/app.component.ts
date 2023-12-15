@@ -114,11 +114,10 @@ export class AppComponent {
         isDone: false,
       };
 
-      this.taskService
-        .submitTask(newTask)
-        .subscribe((task) => this.taskArray.push(task));
-
-      this.applyForm.reset();
+      this.taskService.submitTask(newTask).subscribe((task) => {
+        this.taskArray.push(task);
+        this.applyForm.reset();
+      });
     } else {
       this.snackBar.open("Task title can't be empty!", '', {
         duration: 2500,
@@ -139,11 +138,8 @@ export class AppComponent {
   }
 
   deleteTask(id: string) {
-    this.taskArray.forEach((task) => {
-      if (task._id === id) {
-        this.taskArray.splice(this.taskArray.indexOf(task), 1);
-        this.taskService.deleteTask(task._id).subscribe();
-      }
+    this.taskService.deleteTask(id).subscribe((task: Task) => {
+      this.taskArray.splice(this.taskArray.indexOf(task), 1);
     });
   }
 

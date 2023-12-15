@@ -8,6 +8,7 @@ import {
   Put,
 } from '@nestjs/common';
 import { TaskDTO } from 'src/model/TaskDTO';
+import { Task } from 'src/schemas/task.schema';
 import { TaskService } from 'src/task/task.service';
 
 @Controller('tasks')
@@ -15,24 +16,22 @@ export class TaskController {
   constructor(private readonly taskService: TaskService) {}
 
   @Get()
-  async getAll() {
-    const tasks = await this.taskService.getAll();
-    return tasks;
+  async getAll(): Promise<Task[]> {
+    return this.taskService.getAll();
   }
 
   @Post()
-  async createTask(@Body() task: TaskDTO) {
-    const newTask = await this.taskService.createTask(task);
-    return newTask;
+  async createTask(@Body() task: TaskDTO): Promise<Task> {
+    return this.taskService.createTask(task);
   }
 
   @Delete('/:id')
-  async delete(@Param('id') id: string) {
-    return await this.taskService.deleteTask(id);
+  async delete(@Param('id') id: string): Promise<Task> {
+    return this.taskService.deleteTask(id);
   }
 
   @Put('/:id')
-  async doneTask(@Param('id') id: string) {
-    return await this.taskService.doneTask(id);
+  async doneTask(@Param('id') id: string): Promise<Task> {
+    return this.taskService.doneTask(id);
   }
 }
