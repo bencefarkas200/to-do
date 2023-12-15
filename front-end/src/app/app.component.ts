@@ -107,17 +107,18 @@ export class AppComponent {
   }
 
   submitTask() {
-    if (this.applyForm.value.title != null) {
+    if (this.applyForm.value.title) {
       let newTask: Task = {
-        title: this.applyForm.value.title ?? '',
-        comment: this.applyForm.value.comment ?? '',
+        title: this.applyForm.value.title,
+        comment: this.applyForm.value.comment,
         isDone: false,
       };
-      this.applyForm.reset();
 
       this.taskService
         .submitTask(newTask)
         .subscribe((task) => this.taskArray.push(task));
+
+      this.applyForm.reset();
     } else {
       this.snackBar.open("Task title can't be empty!", '', {
         duration: 2500,
