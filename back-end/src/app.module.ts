@@ -1,23 +1,16 @@
 import { Module } from '@nestjs/common';
-import { ConfigModule, ConfigService } from '@nestjs/config';
+import { ConfigModule } from '@nestjs/config';
 import { MongooseModule } from '@nestjs/mongoose';
-import { config } from './config';
 import { Task, TaskSchema } from './schemas/task.schema';
 import { TaskModule } from './task/task.module';
 import { TaskService } from './task/task.service';
 
 @Module({
   imports: [
-    ConfigModule.forRoot({
-      isGlobal: true,
-      load: [config],
-    }),
-    MongooseModule.forRootAsync({
-      inject: [ConfigService],
-      useFactory: async (ConfigSecret: ConfigService) => ({
-        uri: ConfigSecret.get('uri'),
-      }),
-    }),
+    ConfigModule.forRoot(),
+    MongooseModule.forRoot(
+      `mongodb://${process.env.DB_HOST}:${process.env.DB_PORT}/${process.env.DB_NAME}`,
+    ),
     MongooseModule.forFeature([{ name: Task.name, schema: TaskSchema }]),
     TaskModule,
   ],
