@@ -129,10 +129,11 @@ export class AppComponent {
     this.isDoneArrayEmpty = false;
     this.taskArray.forEach((task) => {
       if (task._id === id) {
-        task.isDone = true;
-        this.taskService.doneTask(task._id).subscribe();
-        this.doneArray.push(task);
-        this.taskArray.splice(this.taskArray.indexOf(task), 1);
+        this.taskService.doneTask(task._id).subscribe(() => {
+          task.isDone = true;
+          this.doneArray.push(task);
+          this.taskArray.splice(this.taskArray.indexOf(task), 1);
+        });
       }
     });
   }
