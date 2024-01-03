@@ -1,14 +1,13 @@
-import { Component } from '@angular/core';
-import { Task } from 'src/model/Task';
-import { FormControl, FormGroup } from '@angular/forms';
-import { TaskService } from './task.service';
-import { MatCardModule } from '@angular/material/card';
-import { MatButtonModule } from '@angular/material/button';
-import { MatInputModule } from '@angular/material/input';
-import { ReactiveFormsModule } from '@angular/forms';
-import { TaskCardComponent } from './task-card/task-card.component';
 import { CommonModule } from '@angular/common';
+import { Component } from '@angular/core';
+import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
+import { MatInputModule } from '@angular/material/input';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { Task } from 'src/model/Task';
+import { TaskCardComponent } from './task-card/task-card.component';
+import { TaskService } from './task.service';
 
 @Component({
   selector: 'app-root',
@@ -86,34 +85,39 @@ export class AppComponent {
   doneArray: Task[] = [];
   isDoneArrayEmpty = true;
   shouldShowTaskArray = false;
-  id = -1;
 
   applyForm = new FormGroup({
-    title: new FormControl(''),
-    comment: new FormControl(''),
+    title: new FormControl('', { nonNullable: true }),
+    comment: new FormControl('', { nonNullable: true }),
   });
 
   constructor(
     private readonly taskService: TaskService,
     private snackBar: MatSnackBar
   ) {
-    this.taskService.getTasks().then((taskArrayList: Task[]) => {
-      this.taskArray = taskArrayList;
+    this.taskService.getTasks().subscribe((taskArrayList: Task[]) => {
+      taskArrayList.forEach((task) => {
+        if (task.isDone) {
+          this.doneArray.push(task);
+          this.isDoneArrayEmpty = false;
+        } else this.taskArray.push(task);
+      });
       this.shouldShowTaskArray = true;
     });
   }
 
   submitTask() {
-    if (this.applyForm.value.title != '') {
-      let newTask = new Task(
-        this.id++,
-        this.applyForm.value.title ?? '',
-        this.applyForm.value.comment ?? ''
-      );
-      this.taskService.submitTask(newTask);
-      this.applyForm.reset();
-      this.applyForm.value.title = '';
-      this.applyForm.value.comment = '';
+    if (this.applyForm.value.title) {
+      let newTask: Task = {
+        title: this.applyForm.value.title,
+        comment: this.applyForm.value.comment,
+        isDone: false,
+      };
+
+      this.taskService.submitTask(newTask).subscribe((task) => {
+        this.taskArray.push(task);
+        this.applyForm.reset();
+      });
     } else {
       this.snackBar.open("Task title can't be empty!", '', {
         duration: 2500,
@@ -121,21 +125,24 @@ export class AppComponent {
     }
   }
 
-  doneTask(id: number) {
+  doneTask(id: string) {
     this.isDoneArrayEmpty = false;
-
-    this.taskArray.forEach((e) => {
-      if (e.id === id) {
-        this.doneArray.push(e);
-        this.taskArray.splice(this.taskArray.indexOf(e), 1);
+    this.taskArray.forEach((task) => {
+      if (task._id === id) {
+        this.taskService.doneTask(task._id).subscribe(() => {
+          task.isDone = true;
+          this.doneArray.push(task);
+          this.taskArray.splice(this.taskArray.indexOf(task), 1);
+        });
       }
     });
   }
 
-  deleteTask(id: number) {
-    this.taskArray.forEach((e) => {
-      if (e.id === id) {
-        this.taskArray.splice(this.taskArray.indexOf(e), 1);
+  deleteTask(id: string) {
+    this.taskService.deleteTask(id).subscribe(() => {
+      const deleteIndex = this.taskArray.findIndex((task) => task._id === id);
+      if (deleteIndex !== -1) {
+        this.taskArray.splice(deleteIndex, 1);
       }
     });
   }

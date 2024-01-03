@@ -1,28 +1,32 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 import { Task } from 'src/model/Task';
 
 @Injectable({
   providedIn: 'root',
 })
 export class TaskService {
-  readonly url = 'http://localhost:3000/tasks';
-  db: Task[] = [];
+  readonly url = 'http://127.0.0.1:3000/tasks';
 
-  constructor() {}
+  constructor(private http: HttpClient) {}
 
-  async getTasks(): Promise<Task[]> {
-    /*const data = await fetch(this.url);
-    return (await data.json()) ?? []; TODO: HA LESZ BACKEND AKKOR EZT HASZNÁLJUK!*/
-    return new Promise((resolve, reject) => {
-      resolve(this.db);
-    });
+  getTasks(): Observable<Task[]> {
+    const data = this.http.get<Task[]>(this.url);
+    return data;
   }
 
-  submitTask(newTask: Task) {
-    this.db.push({
-      id: newTask.id,
-      title: newTask.title,
-      comment: newTask.comment,
-    });
+  submitTask(newTask: Task): Observable<Task> {
+    return this.http.post<Task>(this.url, newTask);
+  }
+
+  deleteTask(id: string): Observable<Task> {
+    const url = `${this.url}/${id}`;
+    return this.http.delete<Task>(url);
+  }
+
+  doneTask(id: string): Observable<Task> {
+    const url = `${this.url}/${id}`;
+    return this.http.put<Task>(url, '');
   }
 }

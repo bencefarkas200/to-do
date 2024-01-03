@@ -18,10 +18,14 @@ import { MatButtonModule } from '@angular/material/button';
       </p>
     </mat-card-content>
     <mat-card-actions *ngIf="isDone">
-      <button mat-raised-button color="primary" (click)="doneTask(task.id)">
+      <button
+        mat-raised-button
+        color="primary"
+        (click)="doneTask(task._id ?? '')"
+      >
         Done
       </button>
-      <button mat-button (click)="deleteTask(task.id)" class="btn">
+      <button mat-button (click)="deleteTask(task._id ?? '')" class="btn">
         Delete
       </button>
     </mat-card-actions>
@@ -31,14 +35,14 @@ import { MatButtonModule } from '@angular/material/button';
 export class TaskCardComponent {
   @Input() task!: Task;
   @Input() isDone!: boolean;
-  @Output() doneEvent = new EventEmitter<number>();
-  @Output() deleteEvent = new EventEmitter<number>();
+  @Output() doneEvent = new EventEmitter<string>();
+  @Output() deleteEvent = new EventEmitter<string>();
 
-  doneTask(taskId: number) {
+  doneTask(taskId: string) {
     this.doneEvent.emit(taskId);
   }
 
-  deleteTask(taskId: number) {
+  deleteTask(taskId: string) {
     this.deleteEvent.emit(taskId);
   }
 }
