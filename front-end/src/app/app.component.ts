@@ -140,11 +140,10 @@ export class AppComponent {
 
   deleteTask(id: string) {
     this.taskService.deleteTask(id).subscribe(() => {
-      let delete_index = 0;
-      while (this.taskArray[delete_index]._id != id) {
-        delete_index++;
+      const deleteIndex = this.taskArray.findIndex((task) => task._id === id);
+      if (deleteIndex !== -1) {
+        this.taskArray.splice(deleteIndex, 1);
       }
-      this.taskArray.splice(delete_index, 1);
     });
   }
 
