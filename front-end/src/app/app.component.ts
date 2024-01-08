@@ -148,7 +148,9 @@ export class AppComponent {
   }
 
   doneClear() {
-    this.doneArray = [];
-    this.isDoneArrayEmpty = true;
+    this.taskService.deleteDone().subscribe(() => {
+      this.doneArray = [];
+      this.isDoneArrayEmpty = true;
+    });
   }
 }
