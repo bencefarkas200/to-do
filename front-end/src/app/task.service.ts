@@ -30,7 +30,7 @@ export class TaskService {
     return this.http.put<Task>(url, '');
   }
 
-  deleteDoneTasks(): Observable<Task> {
-    return this.http.delete<Task>(this.url);
+  deleteDoneTasks(): Observable<void> {
+    return this.http.delete<void>(this.url);
   }
 }
