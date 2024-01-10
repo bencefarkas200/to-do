@@ -64,7 +64,7 @@ import { TaskService } from './task.service';
           <button
             mat-raised-button
             color="primary"
-            (click)="doneClear()"
+            (click)="clearDoneArray()"
             id="clear"
           >
             Clear
@@ -147,8 +147,8 @@ export class AppComponent {
     });
   }
 
-  doneClear() {
-    this.taskService.deleteDone().subscribe(() => {
+  clearDoneArray() {
+    this.taskService.deleteDoneTasks().subscribe(() => {
       this.doneArray = [];
       this.isDoneArrayEmpty = true;
     });

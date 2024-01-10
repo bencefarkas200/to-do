@@ -25,7 +25,7 @@ export class TaskService {
     return this.taskModel.findByIdAndUpdate(id, { isDone: true });
   }
 
-  async deleteDone(): Promise<void> {
+  async deleteDoneTasks(): Promise<void> {
     this.taskModel.deleteMany({ isDone: true }).exec();
   }
 }
