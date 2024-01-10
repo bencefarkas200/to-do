@@ -30,6 +30,11 @@ export class TaskController {
     return this.taskService.deleteTask(id);
   }
 
+  @Delete()
+  async deleteDoneTasks(): Promise<void> {
+    return this.taskService.deleteDoneTasks();
+  }
+
   @Put('/:id')
   async doneTask(@Param('id') id: string): Promise<Task> {
     return this.taskService.doneTask(id);
