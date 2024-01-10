@@ -1,5 +1,5 @@
 export class TaskDTO {
-  _id?: string;
+  _id: string;
   title: string;
   comment: string;
   isDone: boolean;
