@@ -15,4 +15,4 @@ COPY .env ./
 
 RUN npm run build
 
-CMD ["nest", "start"]
+CMD ["npm","run", "start:prod"]
