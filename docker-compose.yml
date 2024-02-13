@@ -22,7 +22,7 @@ services:
     ports:
       - 27017:27017
     volumes:
-      - todo:/data/db
+      - todo_mongodb_data:/data/db
 
 volumes:
-  todo:
+  todo_mongodb_data:
