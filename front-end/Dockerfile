@@ -1,5 +1,3 @@
-
-
 FROM node:latest as build-step
 
 RUN mkdir -p /app
@@ -14,7 +12,6 @@ COPY . /app
 
 RUN npm run build --prod
 
- 
 
 FROM nginx:1.25.3
 
