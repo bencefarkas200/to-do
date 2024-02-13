@@ -1,4 +1,4 @@
-FROM node:latest as build-step
+FROM node:18 as build-step
 
 RUN mkdir -p /app
 
@@ -13,6 +13,6 @@ COPY . /app
 CMD [ "ng","build" ]
 
 
-FROM nginx:1.25.3
+FROM nginx:1.25.3 as serve-step
 
 COPY --from=build-step /app/dist/to_do /usr/share/nginx/html
