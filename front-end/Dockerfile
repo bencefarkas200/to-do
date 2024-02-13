@@ -10,7 +10,7 @@ RUN npm install
 
 COPY . /app
 
-RUN npm run build --prod
+CMD [ "ng","build" ]
 
 
 FROM nginx:1.25.3
