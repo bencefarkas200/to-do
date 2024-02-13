@@ -1,0 +1,28 @@
+version: "3.8"
+
+services:
+  frontend:
+    build: ./front-end
+    ports:
+      - 4200:80
+    depends_on:
+      - backend
+
+  backend:
+    build: ./back-end
+    ports:
+      - 3000:3000
+    environment:
+      DB_URL: mongodb://127.0.0.1:27017/todo/tasks
+    depends_on:
+      - database
+
+  database:
+    image: mongo:4.0-xenial
+    ports:
+      - 27017:27017
+    volumes:
+      - todo:/data/db
+
+volumes:
+  todo:
