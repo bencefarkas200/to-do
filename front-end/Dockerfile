@@ -10,7 +10,7 @@ RUN npm install
 
 COPY . /app
 
-CMD [ "ng","build" ]
+RUN npm run build
 
 
 FROM nginx:1.25.3 as serve-step
