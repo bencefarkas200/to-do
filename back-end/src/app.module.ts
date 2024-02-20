@@ -8,9 +8,7 @@ import { TaskService } from './task/task.service';
 @Module({
   imports: [
     ConfigModule.forRoot(),
-    MongooseModule.forRoot(
-      `mongodb://${process.env.DB_HOST}:${process.env.DB_PORT}/${process.env.DB_NAME}`,
-    ),
+    MongooseModule.forRoot(process.env.DB_URI ?? ''),
     MongooseModule.forFeature([{ name: Task.name, schema: TaskSchema }]),
     TaskModule,
   ],
