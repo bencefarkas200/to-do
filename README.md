@@ -18,39 +18,26 @@ You can:
 
 ### What the app uses?
 
-- Angular for frontend
-- Nest.js for backend
+- Angular for frontend (v17.0.3)
+- Nest.js for backend (v10.1.18)
 - MongoDB for database
 
 ## Getting started
 
-You can deploy this app two ways: locally or with Docker, but firstly install the project.
+You can deploy the app either locally or with Docker. However, to run the database you'll need Docker!
 
-```bash
-  npm install to-do
-  cd to-do
+### Database
+
+To run the database:
+
+- Make sure you've Docker Engine on your device (with the <a href="#docker-engine">command</a> below),
+- Run `database` service with the following command:
+
+```bash id="docker-engine"
+  docker-compose up database
 ```
 
-### Deploy locally
-
-Check if you're in the right folder (to-do), then navigate to 'forntend' folder and run the following commands:
-
-```bash
-  npm i
-  npm run start
-```
-
-Check http://localhost:4200 (You can't add tasks yet!).
-
-If the frontend is running navigate to the 'backend' folder and run the necessary command.
-
-```bash
-  cd ..
-  cd ./backend
-  npm run start
-```
-
-Now you're all set! Have fun using the app! :D
+Now you can continue the deployment the way you want.
 
 ### Deploy with Docker
 
@@ -67,3 +54,30 @@ After that, you only need to run this one command:
 ```
 
 This might take a few minutes, but once it's done, you can use the app! Check http://localhost:4200 !
+
+### Deploy locally
+
+#### Backend
+
+Check if you're in the right folder (todo) and navigate to the `backend` folder and run the necessary commands:
+
+```bash
+  cd ./backend
+  npm i
+  npm run start
+```
+
+#### Frontend
+
+If the backend is up and running, navigate to 'frontend' folder and run the following commands:
+
+```bash
+  cd ..
+  cd ./frontend
+  npm i
+  npm run start
+```
+
+Check http://localhost:4200.
+
+Now you're all set! Have fun using the app! :D
