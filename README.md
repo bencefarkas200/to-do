@@ -26,19 +26,6 @@ You can:
 
 You can deploy the app either locally or with Docker. However, to run the database you'll need Docker!
 
-### Database
-
-To run the database:
-
-- Make sure you've Docker Engine on your device (with the <a href="#docker-engine">command</a> below),
-- Run `database` service with the following command:
-
-```bash id="docker-engine"
-  docker-compose up database
-```
-
-Now you can continue the deployment the way you want.
-
 ### Deploy with Docker
 
 Firstly, make sure you have Docker engine installed on your device! You can check this with the following command:
@@ -56,6 +43,17 @@ After that, you only need to run this one command:
 This might take a few minutes, but once it's done, you can use the app! Check http://localhost:4200 !
 
 ### Deploy locally
+
+#### Database
+
+To run the database:
+
+- Make sure you have Docker Engine on your device (with the command above),
+- Run `database` service with the following command:
+
+```bash
+  docker-compose up database
+```
 
 #### Backend
 
